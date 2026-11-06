@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ремонт компьютеров в Чите — РемКонтур</title>
+<meta name="description" content="Ремонт компьютеров в Чите: чистка, замена SSD, лечение вирусов, ремонт системных блоков. Цена до начала работ.">
+<meta name="theme-color" content="#0E0F11">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230E0F11'/%3E%3Crect x='7' y='9' width='18' height='11' rx='2' fill='none' stroke='white' stroke-width='2'/%3E%3Cpath d='M12 24h8' stroke='white' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  colors: { ink:'#0E0F11', graphite:'#191B1E', coal:'#24272B', steel:'#4A4F57', mat:'#8A9099', mist:'#E4E5E7', paper:'#F4F4F2' },
+  fontFamily: { sans: ['"Golos Text"','system-ui','-apple-system','"Segoe UI"','Roboto','Arial','sans-serif'] }
+} } };
+</script>
+<style type="text/tailwindcss">
+@layer base {
+  html { scroll-behavior: smooth; font-size: 17px; }
+  body { @apply bg-paper font-sans text-ink antialiased; }
+  :focus-visible { outline: 3px solid #8A9099; outline-offset: 2px; }
+  .bg-ink :focus-visible, .on-dark :focus-visible { outline-color: #fff; }
+  h1, h2 { text-wrap: balance; }
+}
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-7xl px-5 sm:px-8; }
+  .btn { @apply inline-flex min-h-[52px] items-center justify-center gap-2 rounded-lg px-6 text-base font-semibold transition disabled:cursor-wait disabled:opacity-60; }
+  .btn-light { @apply bg-white text-ink hover:bg-mist; }
+  .btn-dark { @apply bg-ink text-white hover:bg-coal; }
+  .btn-ghost { @apply border border-white/30 text-white hover:bg-white/10; }
+  .btn-outline { @apply border border-ink/25 text-ink hover:border-ink hover:bg-ink hover:text-white; }
+  .nav-link { @apply rounded-lg px-3 py-2 text-[15px] text-mist/80 transition hover:bg-white/10 hover:text-white; }
+  .nav-link.is-active { @apply bg-white/10 text-white; }
+  .m-link { @apply block px-3 py-3 text-lg; }
+  .input { @apply block min-h-[52px] w-full rounded-lg border border-ink/20 bg-white px-4 py-3 text-base text-ink placeholder:text-mat focus:border-ink; }
+  .input.invalid { @apply border-red-700 bg-red-50; }
+  .input-dark { @apply border-white/20 bg-coal text-white placeholder:text-mat focus:border-white; }
+  .lbl { @apply mb-1.5 block text-sm font-medium text-steel; }
+  .lbl-dark { @apply text-lg font-semibold; }
+  .err { @apply mt-1.5 block text-sm not-italic text-red-700; }
+  .status:empty { display: none; }
+  .status-error { @apply flex gap-3 rounded-lg border border-red-700/30 bg-red-50 p-4 text-sm text-red-900; }
+  .chip { @apply rounded-full border border-white/20 px-4 py-2 text-sm text-mist transition hover:border-white hover:text-white; }
+  .result { @apply flex items-center justify-between gap-4 rounded-lg border border-white/15 bg-coal p-4 transition hover:border-white/60; }
+  .tab { @apply min-h-[48px] rounded-lg border border-ink/20 bg-white px-5 font-medium transition hover:border-ink; }
+  .tab[aria-selected="true"] { @apply border-ink bg-ink text-white; }
+  .fault { @apply flex flex-col rounded-xl border border-ink/10 bg-white p-6; }
+  .fault > button { margin-top: auto; }
+  .faq { @apply rounded-xl border border-ink/10 bg-white; }
+  .faq summary { @apply flex cursor-pointer list-none items-center justify-between gap-4 p-5 text-lg font-semibold; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq[open] .faq-i { transform: rotate(180deg); }
+  .faq-i { transition: transform .2s; }
+  .faq p { @apply px-5 pb-5 text-steel; animation: fadeIn .25s ease; }
+  .sec { @apply py-16 md:py-24; }
+  .h2 { @apply text-3xl font-semibold tracking-tight md:text-4xl; }
+}
+/* Анимация: одно появление при загрузке главного блока + ответ на действия пользователя */
+.hero-in > * { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
+.hero-in > *:nth-child(2) { animation-delay: .08s; } .hero-in > *:nth-child(3) { animation-delay: .16s; } .hero-in > *:nth-child(4) { animation-delay: .24s; }
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+.modal-card { transform: translateY(16px); opacity: 0; transition: transform .25s ease, opacity .25s ease; }
+.is-open .modal-card { transform: none; opacity: 1; }
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } .reveal { opacity: 1; transform: none; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-white focus:px-4 focus:py-3">Перейти к содержанию</a>
+<div id="site-header"></div>
+<main id="main">
+<section class="bg-ink text-white on-dark"><div class="wrap py-14 md:py-20"><div class="hero-in max-w-3xl">
+<nav class="mb-6 text-sm text-mist/60" aria-label="Хлебные крошки"><a class="hover:text-white" href="index.html">Главная</a> / <span>Ремонт компьютеров</span></nav><h1 class="text-4xl font-semibold leading-[1.1] tracking-tight md:text-5xl">Ремонт компьютеров в Чите</h1>
+<p class="mt-5 text-lg text-mist/80 md:text-xl">Тормозит, шумит, не запускается или поймал вирус. Разберёмся с причиной и назовём цену до начала ремонта.</p>
+<div class="mt-8 flex flex-col gap-3 sm:flex-row"><a href="tel:+73022550101" class="btn btn-light">Позвонить +7 (3022) 55-01-01</a><button type="button" data-open="request" class="btn btn-ghost">Оставить заявку</button></div></div></div></section>
+<section class="sec" id="faults"><div class="wrap"><h2 class="h2 reveal">Частые поломки и цены</h2><p class="mt-3 max-w-2xl text-lg text-steel reveal">Цена указана за работы. Стоимость деталей мастер назовёт после диагностики.</p><div class="mt-8" data-catalog="pc"></div></div></section>
+
+<section class="sec bg-white"><div class="wrap grid gap-10 lg:grid-cols-2">
+<div class="reveal"><h2 class="h2">Когда стоит звонить сразу</h2><ul class="mt-6 space-y-3 text-lg"><li class="flex gap-3"><span class="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-ink"></span>Компьютер не реагирует на кнопку включения</li><li class="flex gap-3"><span class="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-ink"></span>Появился синий экран или система не загружается</li><li class="flex gap-3"><span class="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-ink"></span>Нужно сохранить файлы — не пытайтесь переустанавливать Windows сами</li><li class="flex gap-3"><span class="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-ink"></span>Системный блок сильно шумит и греется</li></ul></div>
+<div class="reveal rounded-xl border border-ink/10 bg-paper p-6"><h3 class="text-xl font-semibold">Когда ремонт может быть невыгоден</h3><p class="mt-3 text-steel">Для очень старых компьютеров апгрейд иногда дороже новой сборки. Мастер предложит варианты: от недорогой замены диска до покупки нового.</p><button type="button" data-open="request" data-device="pc" class="btn btn-dark mt-6">Спросить мастера</button></div>
+</div></section>
+
+<section class="sec"><div class="wrap"><h2 class="h2 reveal">Как проходит ремонт</h2><div class="mt-10"><ol class="grid gap-4 md:grid-cols-4"><li class="reveal rounded-xl border border-ink/10 bg-white p-6"><span class="grid h-9 w-9 place-items-center rounded-full bg-ink text-sm font-semibold text-white">1</span><h3 class="mt-4 text-lg font-semibold">Звонок или заявка</h3><p class="mt-2 text-steel">Расскажите, что случилось. Подскажем, везти технику или вызвать мастера.</p></li><li class="reveal rounded-xl border border-ink/10 bg-white p-6"><span class="grid h-9 w-9 place-items-center rounded-full bg-ink text-sm font-semibold text-white">2</span><h3 class="mt-4 text-lg font-semibold">Диагностика</h3><p class="mt-2 text-steel">Находим причину. Если ремонтируете у нас — диагностика бесплатна.</p></li><li class="reveal rounded-xl border border-ink/10 bg-white p-6"><span class="grid h-9 w-9 place-items-center rounded-full bg-ink text-sm font-semibold text-white">3</span><h3 class="mt-4 text-lg font-semibold">Согласование цены</h3><p class="mt-2 text-steel">Называем сумму и срок до начала работ. Нет согласия — ничего не трогаем.</p></li><li class="reveal rounded-xl border border-ink/10 bg-white p-6"><span class="grid h-9 w-9 place-items-center rounded-full bg-ink text-sm font-semibold text-white">4</span><h3 class="mt-4 text-lg font-semibold">Ремонт и гарантия</h3><p class="mt-2 text-steel">Чиним, проверяем вместе с вами, выдаём акт с гарантией. Платите после результата.</p></li></ol></div></div></section>
+
+<section class="sec bg-ink text-white on-dark" id="calc"><div class="wrap grid items-start gap-10 lg:grid-cols-2">
+<div class="reveal"><h2 class="h2">Предварительная оценка</h2><p class="mt-4 text-lg text-mist/80">Выберите поломку — получите диапазон цены. Точную сумму назовёт мастер до начала работ.</p></div>
+<div class="reveal rounded-2xl bg-white p-6 text-ink sm:p-8"><div data-calc="pc"></div></div></div></section>
+
+<section class="sec"><div class="wrap grid gap-10 lg:grid-cols-3"><div class="reveal"><h2 class="h2">Вопросы</h2><a href="prices.html" class="btn btn-outline mt-6">Все цены</a></div><div class="lg:col-span-2" data-faq="pc" data-limit="5"></div></div></section>
+<section class="sec bg-ink text-white on-dark"><div class="wrap grid items-start gap-10 lg:grid-cols-2">
+<div class="reveal"><h2 class="h2">Не уверены, что сломалось? Опишите — подскажем</h2>
+<p class="mt-4 text-lg text-mist/80">Позвоните или оставьте заявку. Мастер уточнит симптомы, назовёт примерную цену и подскажет, везти технику или вызвать мастера.</p>
+<a href="tel:+73022550101" class="mt-6 block text-3xl font-semibold tracking-tight md:text-4xl">+7 (3022) 55-01-01</a>
+<p class="mt-2 text-mist/70">Пн–Сб 9:00–19:00, Вс 10:00–16:00</p>
+<p class="mt-1 text-mist/70">г. Чита, ул. Амурская, 24 (вымышленный адрес)</p></div>
+<div class="reveal rounded-2xl bg-white p-6 text-ink sm:p-8"><h3 class="mb-5 text-2xl font-semibold">Заявка на ремонт</h3><div data-lead-form="cta-block"></div></div></div></section>
+</main>
+<div id="site-footer"></div>
+<noscript><p style="padding:16px;text-align:center">Для работы форм и калькулятора включите JavaScript. Позвоните нам: +7 (3022) 55-01-01</p></noscript>
+<script src="js/main.js" defer></script>
+</body>
+</html>
